@@ -1,0 +1,306 @@
+/* =====================================================================
+   FREEWAR STYLE  ·  "Mondsilber"  ·  v2.0
+   Dunkles, modernes Design mit Gold- und Türkis-Akzenten
+   Ersetzt komplett das alte style.css (v1.0)
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   Module (unverändert aus v1.0 übernommen – Funktionen bleiben erhalten)
+   @import muss IMMER ganz oben in der Datei stehen!
+   --------------------------------------------------------------------- */
+@import url(../cmp/status.css);
+@import url(../cmp/ans.css);
+@import url(../cmp/cnr.css);
+@import url(../cmp/smn.css);
+@import url(../cmp/cid.css);
+@import url(../cmp/save.css);
+@import url(../cmp/general.css);
+
+
+/* ---------------------------------------------------------------------
+   Farbpalette  (hier zentral anpassen)
+   --------------------------------------------------------------------- */
+:root {
+  --bg-tief:      #0e1116;   /* Seitenhintergrund            */
+  --bg-flaeche:   #161b22;   /* Boxen, Tabellen              */
+  --bg-erhoeht:   #1f2630;   /* Überschriften, Hover         */
+  --linie:        #2c3542;   /* Rahmen, Trenner              */
+  --text:         #d6dbe3;   /* Fließtext                    */
+  --text-leise:   #8b95a5;   /* Nebeninfos                   */
+  --gold:         #e3b45c;   /* Hauptakzent (Überschriften)  */
+  --gold-hell:    #f5d38f;
+  --tuerkis:      #4fd1c5;   /* Links                        */
+  --tuerkis-hell: #8ef0e6;
+  --rot:          #f0616d;   /* Gefahr, Schreie              */
+  --gruen:        #6fcf7f;   /* Positiv                      */
+  --violett:      #b18cf2;   /* Gruppe / Clan                */
+  --radius:       6px;
+  --schrift:      "Segoe UI", "Inter", Roboto, Verdana, Arial, sans-serif;
+}
+
+
+/* ---------------------------------------------------------------------
+   Grundlayout (gilt für alle Frames)
+   --------------------------------------------------------------------- */
+html, body, body.framemainbg {
+  background: var(--bg-tief) !important;
+  background-image:
+    radial-gradient(ellipse at top, rgba(79,209,197,0.06), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(227,180,92,0.05), transparent 60%) !important;
+  background-attachment: fixed !important;
+  color: var(--text) !important;
+  margin: 0;
+}
+
+p, ul, ol, div, td, th, span, table, body, font, li {
+  color: var(--text);
+  font-family: var(--schrift);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+b, strong { color: #ffffff; }
+i, em     { color: var(--text-leise); }
+
+table { border-collapse: collapse; border: 0; }
+td    { padding: 2px 3px; }
+
+hr, .divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--linie), var(--gold), var(--linie), transparent);
+  margin: 8px 0;
+}
+
+::selection { background: var(--gold); color: var(--bg-tief); }
+
+
+/* ---------------------------------------------------------------------
+   Links
+   --------------------------------------------------------------------- */
+a, a:link, a:visited {
+  color: var(--tuerkis) !important;
+  text-decoration: none;
+  transition: color .15s ease, text-shadow .15s ease;
+}
+a:hover, a:focus {
+  color: var(--tuerkis-hell) !important;
+  text-shadow: 0 0 6px rgba(79,209,197,0.55);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:active { color: var(--gold) !important; }
+
+
+/* ---------------------------------------------------------------------
+   Kopfbereich, Ortsname, Überschriften
+   --------------------------------------------------------------------- */
+td.mainheader, .mainheader {
+  background: linear-gradient(180deg, var(--bg-erhoeht), var(--bg-flaeche)) !important;
+  color: var(--gold) !important;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-shadow: 0 1px 0 #000, 0 0 12px rgba(227,180,92,0.35);
+  border-bottom: 2px solid var(--gold);
+  padding: 8px 10px;
+  height: auto;
+}
+
+p.maincaption, .maincaption {
+  background: linear-gradient(90deg, rgba(227,180,92,0.18), transparent 80%) !important;
+  color: var(--gold-hell) !important;
+  font-size: 15px;
+  font-weight: 600;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 4px 8px;
+  margin: 8px 0 4px;
+}
+
+p.maincaption2, .maincaption2, .listcaption, .personlistcaption {
+  color: var(--tuerkis) !important;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--linie);
+  padding: 3px 4px;
+  margin: 6px 0 3px;
+  background: none !important;
+}
+
+h1, h2, h3, h4 {
+  color: var(--gold);
+  font-family: var(--schrift);
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+
+
+/* ---------------------------------------------------------------------
+   Ortsbeschreibung
+   --------------------------------------------------------------------- */
+td.areadescription, .areadescription {
+  background: var(--bg-flaeche) !important;
+  background-image: none !important;
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 8px 10px !important;
+  color: var(--text) !important;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.35);
+}
+
+
+/* ---------------------------------------------------------------------
+   Menü / Rahmen / Boxen
+   --------------------------------------------------------------------- */
+.menubg, .outline {
+  background: var(--bg-flaeche) !important;
+  border: 1px solid var(--linie) !important;
+  border-radius: var(--radius);
+}
+
+#topheader { background: var(--bg-erhoeht) !important; }
+
+
+/* ---------------------------------------------------------------------
+   Karte
+   --------------------------------------------------------------------- */
+.imageborder, td[id^="mapx"] img {
+  border: 1px solid rgba(0,0,0,0.6) !important;
+  transition: filter .15s ease, outline-color .15s ease;
+}
+td[id^="mapx"]:hover img,
+img[id^="mainmapx"]:hover {
+  filter: brightness(1.15) saturate(1.1);
+  outline: 1px solid var(--gold);
+}
+/* eigene Position */
+img[src*="user.gif"] {
+  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 6px var(--gold));
+}
+
+
+/* ---------------------------------------------------------------------
+   Chat
+   --------------------------------------------------------------------- */
+p.chattext, .chattext { margin: 1px 0; padding: 1px 4px; border-radius: 3px; }
+p.chattext:hover, .chattext:hover { background: rgba(255,255,255,0.03); }
+
+.chattextscream, p.chattextscream {
+  color: var(--rot) !important;
+  font-weight: 600;
+  background: rgba(240,97,109,0.08);
+  border-left: 2px solid var(--rot);
+  padding-left: 5px;
+}
+.chattextworld, .worldsay, p.chattextworld {
+  color: var(--gold-hell) !important;
+  background: rgba(227,180,92,0.07);
+  border-left: 2px solid var(--gold);
+  padding-left: 5px;
+}
+.chattextgroup, .chattextclan, p.chattextgroup, p.chattextclan {
+  color: var(--violett) !important;
+}
+.chattextwhisper, p.chattextwhisper {
+  color: var(--tuerkis-hell) !important;
+  font-style: italic;
+}
+.chatpics { vertical-align: middle; opacity: .9; }
+
+img[src*="group.gif"] { filter: hue-rotate(200deg) brightness(1.2); }
+
+
+/* ---------------------------------------------------------------------
+   NPC-Markierungen (layout_color_*)
+   --------------------------------------------------------------------- */
+[class*="layout_color_"] {
+  border-radius: var(--radius);
+  border-width: 1px !important;
+  border-style: solid !important;
+}
+.layout_color_resistenznpc,
+.layout_color_superresistenznpc {
+  background: rgba(130,140,255,0.12) !important;
+  border-color: #7c86ff !important;
+}
+.layout_color_strahlenmuster {
+  background: rgba(240,97,109,0.10) !important;
+  border-color: var(--rot) !important;
+}
+
+
+/* ---------------------------------------------------------------------
+   Formulare & Buttons
+   --------------------------------------------------------------------- */
+input, select, textarea, button {
+  font-family: var(--schrift);
+  font-size: 12px;
+  color: var(--text) !important;
+  background: var(--bg-tief) !important;
+  border: 1px solid var(--linie) !important;
+  border-radius: 4px;
+  padding: 3px 6px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--tuerkis) !important;
+  box-shadow: 0 0 0 2px rgba(79,209,197,0.25);
+}
+
+input[type="submit"], input[type="button"], button {
+  background: linear-gradient(180deg, #2a3240, #1d232d) !important;
+  color: var(--gold-hell) !important;
+  border-color: #3a4556 !important;
+  font-weight: 600;
+  cursor: pointer;
+}
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+  background: linear-gradient(180deg, var(--gold), #c4923a) !important;
+  color: var(--bg-tief) !important;
+  border-color: var(--gold) !important;
+}
+
+input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
+
+
+/* ---------------------------------------------------------------------
+   Phasenenergie-Anzeige
+   --------------------------------------------------------------------- */
+#fullenergydisp {
+  background: var(--bg-erhoeht) !important;
+  border: 1px solid var(--linie);
+  border-radius: 3px;
+}
+#curenergy {
+  background: linear-gradient(90deg, var(--tuerkis), var(--gold)) !important;
+  border-radius: 3px;
+}
+
+
+/* ---------------------------------------------------------------------
+   Scrollbars
+   --------------------------------------------------------------------- */
+* { scrollbar-width: thin; scrollbar-color: #3a4556 var(--bg-tief); }
+::-webkit-scrollbar              { width: 9px; height: 9px; }
+::-webkit-scrollbar-track        { background: var(--bg-tief); }
+::-webkit-scrollbar-thumb        { background: #2f3846; border-radius: 6px; border: 2px solid var(--bg-tief); }
+::-webkit-scrollbar-thumb:hover  { background: var(--gold); }
+
+
+/* ---------------------------------------------------------------------
+   Shopgrafik
+   >>> Hier deinen alten Block ".framebannerbg:before { … }" aus v1.0
+       unverändert einfügen (mit den drei url(...)-Einträgen für
+       grafik.php, xp.php und vvvg.php). Nur die Optik drumherum
+       wird hier ergänzt.
+   --------------------------------------------------------------------- */
+.framebannerbg {
+  background: var(--bg-erhoeht) !important;
+  border-bottom: 1px solid var(--linie);
+}
+
+/* .framebannerbg:before { … DEIN ALTER BLOCK … } */
