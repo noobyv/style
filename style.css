@@ -1,5 +1,5 @@
 /* =====================================================================
-   FREEWAR STYLE  ·  "Mondsilber"  ·  v2.0
+   FREEWAR STYLE  ·  "Mondsilber"  ·  v2.1 (Layout-Fix)
    Dunkles, modernes Design mit Gold- und Türkis-Akzenten
    Ersetzt komplett das alte style.css (v1.0)
    ===================================================================== */
@@ -8,13 +8,13 @@
    Module (unverändert aus v1.0 übernommen – Funktionen bleiben erhalten)
    @import muss IMMER ganz oben in der Datei stehen!
    --------------------------------------------------------------------- */
-@import url(../cmp/status.css);
-@import url(../cmp/ans.css);
-@import url(../cmp/cnr.css);
-@import url(../cmp/smn.css);
-@import url(../cmp/cid.css);
-@import url(../cmp/save.css);
-@import url(../cmp/general.css);
+@import url(https://pashorizer.github.io/cmp/status.css);
+@import url(https://pashorizer.github.io/cmp/ans.css);
+@import url(https://pashorizer.github.io/cmp/cnr.css);
+@import url(https://pashorizer.github.io/cmp/smn.css);
+@import url(https://pashorizer.github.io/cmp/cid.css);
+@import url(https://pashorizer.github.io/cmp/save.css);
+@import url(https://pashorizer.github.io/cmp/general.css);
 
 
 /* ---------------------------------------------------------------------
@@ -52,18 +52,16 @@ html, body, body.framemainbg {
   margin: 0;
 }
 
+/* Nur Farbe + Schrift – KEINE Größen/Abstände ändern,
+   sonst verschiebt sich Freewars Tabellen-Layout (Karte, Itemframe) */
 p, ul, ol, div, td, th, span, table, body, font, li {
   color: var(--text);
   font-family: var(--schrift);
-  font-size: 12.5px;
-  line-height: 1.45;
+  font-size: 12px;
 }
 
 b, strong { color: #ffffff; }
 i, em     { color: var(--text-leise); }
-
-table { border-collapse: collapse; border: 0; }
-td    { padding: 2px 3px; }
 
 hr, .divider {
   border: 0;
@@ -120,13 +118,8 @@ p.maincaption, .maincaption {
 
 p.maincaption2, .maincaption2, .listcaption, .personlistcaption {
   color: var(--tuerkis) !important;
-  font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   border-bottom: 1px solid var(--linie);
-  padding: 3px 4px;
-  margin: 6px 0 3px;
   background: none !important;
 }
 
@@ -167,14 +160,14 @@ td.areadescription, .areadescription {
 /* ---------------------------------------------------------------------
    Karte
    --------------------------------------------------------------------- */
-.imageborder, td[id^="mapx"] img {
-  border: 1px solid rgba(0,0,0,0.6) !important;
-  transition: filter .15s ease, outline-color .15s ease;
-}
+/* nur Farbe/Effekt, keine Rahmenbreite – Kartenfelder behalten ihre Größe */
+.imageborder { border-color: #000 !important; }
+td[id^="mapx"] img { transition: filter .15s ease; }
 td[id^="mapx"]:hover img,
 img[id^="mainmapx"]:hover {
   filter: brightness(1.15) saturate(1.1);
   outline: 1px solid var(--gold);
+  outline-offset: -1px;
 }
 /* eigene Position */
 img[src*="user.gif"] {
