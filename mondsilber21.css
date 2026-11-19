@@ -1,299 +1,180 @@
 /* =====================================================================
-   FREEWAR STYLE  ·  "Mondsilber"  ·  v2.1 (Layout-Fix)
-   Dunkles, modernes Design mit Gold- und Türkis-Akzenten
-   Ersetzt komplett das alte style.css (v1.0)
+   FREEWAR STYLE  ·  "Neuzeit"  ·  v3.0
+   Clean, flach, modern. Eine Akzentfarbe, keine Zusatzmodule.
+   Ändert nur Farben/Schrift/Ecken – keine Größen (Layout bleibt stabil).
    ===================================================================== */
 
-/* ---------------------------------------------------------------------
-   Module (unverändert aus v1.0 übernommen – Funktionen bleiben erhalten)
-   @import muss IMMER ganz oben in der Datei stehen!
-   --------------------------------------------------------------------- */
-@import url(https://pashorizer.github.io/cmp/status.css);
-@import url(https://pashorizer.github.io/cmp/ans.css);
-@import url(https://pashorizer.github.io/cmp/cnr.css);
-@import url(https://pashorizer.github.io/cmp/smn.css);
-@import url(https://pashorizer.github.io/cmp/cid.css);
-@import url(https://pashorizer.github.io/cmp/save.css);
-@import url(https://pashorizer.github.io/cmp/general.css);
-
-
-/* ---------------------------------------------------------------------
-   Farbpalette  (hier zentral anpassen)
-   --------------------------------------------------------------------- */
 :root {
-  --bg-tief:      #0e1116;   /* Seitenhintergrund            */
-  --bg-flaeche:   #161b22;   /* Boxen, Tabellen              */
-  --bg-erhoeht:   #1f2630;   /* Überschriften, Hover         */
-  --linie:        #2c3542;   /* Rahmen, Trenner              */
-  --text:         #d6dbe3;   /* Fließtext                    */
-  --text-leise:   #8b95a5;   /* Nebeninfos                   */
-  --gold:         #e3b45c;   /* Hauptakzent (Überschriften)  */
-  --gold-hell:    #f5d38f;
-  --tuerkis:      #4fd1c5;   /* Links                        */
-  --tuerkis-hell: #8ef0e6;
-  --rot:          #f0616d;   /* Gefahr, Schreie              */
-  --gruen:        #6fcf7f;   /* Positiv                      */
-  --violett:      #b18cf2;   /* Gruppe / Clan                */
-  --radius:       6px;
-  --schrift:      "Segoe UI", "Inter", Roboto, Verdana, Arial, sans-serif;
+  --bg:        #0f1115;   /* Seite                 */
+  --card:      #171a21;   /* Karten / Boxen        */
+  --card-2:    #1d212a;   /* Hover, Kopfzeilen     */
+  --line:      #262b35;   /* Rahmen                */
+  --text:      #e6e8ec;   /* Text                  */
+  --muted:     #8a92a0;   /* Nebentext             */
+  --accent:    #5b9cff;   /* Akzent (Links, Fokus) */
+  --accent-2:  #8ab8ff;   /* Akzent hell (Hover)   */
+  --danger:    #ff6b6b;
+  --success:   #4cd18a;
+  --warn:      #f5b84c;
+  --purple:    #a98bff;
+  --r:         8px;
+  --font:      "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
 }
 
-
-/* ---------------------------------------------------------------------
-   Grundlayout (gilt für alle Frames)
-   --------------------------------------------------------------------- */
+/* ---------- Grundlage ---------- */
 html, body, body.framemainbg {
-  background: var(--bg-tief) !important;
-  background-image:
-    radial-gradient(ellipse at top, rgba(79,209,197,0.06), transparent 60%),
-    radial-gradient(ellipse at bottom, rgba(227,180,92,0.05), transparent 60%) !important;
-  background-attachment: fixed !important;
+  background: var(--bg) !important;
+  background-image: none !important;
   color: var(--text) !important;
-  margin: 0;
 }
 
-/* Nur Farbe + Schrift – KEINE Größen/Abstände ändern,
-   sonst verschiebt sich Freewars Tabellen-Layout (Karte, Itemframe) */
-p, ul, ol, div, td, th, span, table, body, font, li {
+body, p, div, td, th, span, font, li, table {
   color: var(--text);
-  font-family: var(--schrift);
-  font-size: 12px;
+  font-family: var(--font) !important;
+  -webkit-font-smoothing: antialiased;
 }
 
-b, strong { color: #ffffff; }
-i, em     { color: var(--text-leise); }
+b, strong { color: #fff; font-weight: 600; }
+i, em     { color: var(--muted); }
 
 hr, .divider {
   border: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--linie), var(--gold), var(--linie), transparent);
-  margin: 8px 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  height: 0;
 }
 
-::selection { background: var(--gold); color: var(--bg-tief); }
+::selection { background: var(--accent); color: #fff; }
 
-
-/* ---------------------------------------------------------------------
-   Links
-   --------------------------------------------------------------------- */
+/* ---------- Links ---------- */
 a, a:link, a:visited {
-  color: var(--tuerkis) !important;
-  text-decoration: none;
-  transition: color .15s ease, text-shadow .15s ease;
+  color: var(--accent) !important;
+  text-decoration: none !important;
+  transition: color .12s ease;
 }
-a:hover, a:focus {
-  color: var(--tuerkis-hell) !important;
-  text-shadow: 0 0 6px rgba(79,209,197,0.55);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-a:active { color: var(--gold) !important; }
+a:hover, a:focus { color: var(--accent-2) !important; }
 
-
-/* ---------------------------------------------------------------------
-   Kopfbereich, Ortsname, Überschriften
-   --------------------------------------------------------------------- */
+/* ---------- Ortsname ---------- */
 td.mainheader, .mainheader {
-  background: linear-gradient(180deg, var(--bg-erhoeht), var(--bg-flaeche)) !important;
-  color: var(--gold) !important;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  text-shadow: 0 1px 0 #000, 0 0 12px rgba(227,180,92,0.35);
-  border-bottom: 2px solid var(--gold);
-  padding: 8px 10px;
-  height: auto;
-}
-
-p.maincaption, .maincaption {
-  background: linear-gradient(90deg, rgba(227,180,92,0.18), transparent 80%) !important;
-  color: var(--gold-hell) !important;
-  font-size: 15px;
-  font-weight: 600;
-  border-left: 3px solid var(--gold);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 4px 8px;
-  margin: 8px 0 4px;
-}
-
-p.maincaption2, .maincaption2, .listcaption, .personlistcaption {
-  color: var(--tuerkis) !important;
-  font-weight: 700;
-  border-bottom: 1px solid var(--linie);
-  background: none !important;
-}
-
-h1, h2, h3, h4 {
-  color: var(--gold);
-  font-family: var(--schrift);
-  font-weight: 600;
-  margin: 8px 0 4px;
-}
-
-
-/* ---------------------------------------------------------------------
-   Ortsbeschreibung
-   --------------------------------------------------------------------- */
-td.areadescription, .areadescription {
-  background: var(--bg-flaeche) !important;
+  background: var(--bg) !important;
   background-image: none !important;
-  border: 1px solid var(--linie);
-  border-radius: var(--radius);
-  padding: 8px 10px !important;
-  color: var(--text) !important;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.35);
-}
-
-
-/* ---------------------------------------------------------------------
-   Menü / Rahmen / Boxen
-   --------------------------------------------------------------------- */
-.menubg, .outline {
-  background: var(--bg-flaeche) !important;
-  border: 1px solid var(--linie) !important;
-  border-radius: var(--radius);
-}
-
-#topheader { background: var(--bg-erhoeht) !important; }
-
-
-/* ---------------------------------------------------------------------
-   Karte
-   --------------------------------------------------------------------- */
-/* nur Farbe/Effekt, keine Rahmenbreite – Kartenfelder behalten ihre Größe */
-.imageborder { border-color: #000 !important; }
-td[id^="mapx"] img { transition: filter .15s ease; }
-td[id^="mapx"]:hover img,
-img[id^="mainmapx"]:hover {
-  filter: brightness(1.15) saturate(1.1);
-  outline: 1px solid var(--gold);
-  outline-offset: -1px;
-}
-/* eigene Position */
-img[src*="user.gif"] {
-  filter: drop-shadow(0 0 3px var(--gold)) drop-shadow(0 0 6px var(--gold));
-}
-
-
-/* ---------------------------------------------------------------------
-   Chat
-   --------------------------------------------------------------------- */
-p.chattext, .chattext { margin: 1px 0; padding: 1px 4px; border-radius: 3px; }
-p.chattext:hover, .chattext:hover { background: rgba(255,255,255,0.03); }
-
-.chattextscream, p.chattextscream {
-  color: var(--rot) !important;
+  color: #fff !important;
   font-weight: 600;
-  background: rgba(240,97,109,0.08);
-  border-left: 2px solid var(--rot);
-  padding-left: 5px;
+  letter-spacing: -0.2px;
+  text-shadow: none !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
 }
-.chattextworld, .worldsay, p.chattextworld {
-  color: var(--gold-hell) !important;
-  background: rgba(227,180,92,0.07);
-  border-left: 2px solid var(--gold);
-  padding-left: 5px;
-}
-.chattextgroup, .chattextclan, p.chattextgroup, p.chattextclan {
-  color: var(--violett) !important;
-}
-.chattextwhisper, p.chattextwhisper {
-  color: var(--tuerkis-hell) !important;
-  font-style: italic;
-}
-.chatpics { vertical-align: middle; opacity: .9; }
+.mainheader img { border-radius: var(--r); }
 
-img[src*="group.gif"] { filter: hue-rotate(200deg) brightness(1.2); }
-
-
-/* ---------------------------------------------------------------------
-   NPC-Markierungen (layout_color_*)
-   --------------------------------------------------------------------- */
-[class*="layout_color_"] {
-  border-radius: var(--radius);
-  border-width: 1px !important;
-  border-style: solid !important;
+/* ---------- Ortsbeschreibung als Karte ---------- */
+td.areadescription, .areadescription {
+  background: var(--card) !important;
+  background-image: none !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--r);
+  color: var(--text) !important;
+  box-shadow: none !important;
 }
+
+/* ---------- Überschriften / Abschnittstitel ---------- */
+p.maincaption, .maincaption {
+  background: none !important;
+  background-image: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  text-shadow: none !important;
+}
+
+p.maincaption2, .maincaption2,
+.listcaption, .personlistcaption {
+  background: none !important;
+  background-image: none !important;
+  color: var(--muted) !important;
+  font-weight: 600;
+  text-transform: none !important;
+  letter-spacing: 0;
+  border: 0 !important;
+  text-shadow: none !important;
+}
+
+h1, h2, h3, h4 { color: #fff; font-family: var(--font); font-weight: 600; }
+
+/* ---------- Boxen / Menüs ---------- */
+.menubg, .outline {
+  background: var(--card) !important;
+  background-image: none !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--r);
+}
+#topheader { background: var(--card) !important; }
+
+/* ---------- Karte ---------- */
+.imageborder { border-color: var(--bg) !important; }
+img[id^="mainmapx"], td[id^="mapx"] img { transition: filter .12s ease; }
+td[id^="mapx"]:hover img, img[id^="mainmapx"]:hover { filter: brightness(1.15); }
+
+/* ---------- Chat ---------- */
+.chattext, p.chattext { color: var(--text); }
+.chattextscream, p.chattextscream { color: var(--danger) !important; font-weight: 500; }
+.chattextworld, p.chattextworld, .worldsay { color: var(--warn) !important; }
+.chattextgroup, p.chattextgroup,
+.chattextclan, p.chattextclan { color: var(--purple) !important; }
+.chattextwhisper, p.chattextwhisper { color: var(--accent-2) !important; font-style: italic; }
+
+/* ---------- NPC-Markierungen ---------- */
 .layout_color_resistenznpc,
 .layout_color_superresistenznpc {
-  background: rgba(130,140,255,0.12) !important;
-  border-color: #7c86ff !important;
+  background: rgba(91,156,255,0.10) !important;
+  border-color: var(--accent) !important;
+  border-radius: var(--r);
 }
 .layout_color_strahlenmuster {
-  background: rgba(240,97,109,0.10) !important;
-  border-color: var(--rot) !important;
+  background: rgba(255,107,107,0.10) !important;
+  border-color: var(--danger) !important;
+  border-radius: var(--r);
 }
 
-
-/* ---------------------------------------------------------------------
-   Formulare & Buttons
-   --------------------------------------------------------------------- */
-input, select, textarea, button {
-  font-family: var(--schrift);
-  font-size: 12px;
+/* ---------- Formulare ---------- */
+input, select, textarea {
+  font-family: var(--font) !important;
   color: var(--text) !important;
-  background: var(--bg-tief) !important;
-  border: 1px solid var(--linie) !important;
-  border-radius: 4px;
-  padding: 3px 6px;
+  background: var(--card) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 6px;
   outline: none;
-  transition: border-color .15s ease, box-shadow .15s ease;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: var(--tuerkis) !important;
-  box-shadow: 0 0 0 2px rgba(79,209,197,0.25);
+  border-color: var(--accent) !important;
 }
 
 input[type="submit"], input[type="button"], button {
-  background: linear-gradient(180deg, #2a3240, #1d232d) !important;
-  color: var(--gold-hell) !important;
-  border-color: #3a4556 !important;
-  font-weight: 600;
+  font-family: var(--font) !important;
+  background: var(--card-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background .12s ease, border-color .12s ease;
 }
 input[type="submit"]:hover, input[type="button"]:hover, button:hover {
-  background: linear-gradient(180deg, var(--gold), #c4923a) !important;
-  color: var(--bg-tief) !important;
-  border-color: var(--gold) !important;
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
 }
 
-input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); }
 
+/* ---------- Phasenenergie ---------- */
+#fullenergydisp { background: var(--card-2) !important; border-radius: 4px; }
+#curenergy      { background: var(--accent) !important; border-radius: 4px; }
 
-/* ---------------------------------------------------------------------
-   Phasenenergie-Anzeige
-   --------------------------------------------------------------------- */
-#fullenergydisp {
-  background: var(--bg-erhoeht) !important;
-  border: 1px solid var(--linie);
-  border-radius: 3px;
-}
-#curenergy {
-  background: linear-gradient(90deg, var(--tuerkis), var(--gold)) !important;
-  border-radius: 3px;
-}
-
-
-/* ---------------------------------------------------------------------
-   Scrollbars
-   --------------------------------------------------------------------- */
-* { scrollbar-width: thin; scrollbar-color: #3a4556 var(--bg-tief); }
-::-webkit-scrollbar              { width: 9px; height: 9px; }
-::-webkit-scrollbar-track        { background: var(--bg-tief); }
-::-webkit-scrollbar-thumb        { background: #2f3846; border-radius: 6px; border: 2px solid var(--bg-tief); }
-::-webkit-scrollbar-thumb:hover  { background: var(--gold); }
-
-
-/* ---------------------------------------------------------------------
-   Shopgrafik
-   >>> Hier deinen alten Block ".framebannerbg:before { … }" aus v1.0
-       unverändert einfügen (mit den drei url(...)-Einträgen für
-       grafik.php, xp.php und vvvg.php). Nur die Optik drumherum
-       wird hier ergänzt.
-   --------------------------------------------------------------------- */
-.framebannerbg {
-  background: var(--bg-erhoeht) !important;
-  border-bottom: 1px solid var(--linie);
-}
-
-/* .framebannerbg:before { … DEIN ALTER BLOCK … } */
+/* ---------- Scrollbars ---------- */
+* { scrollbar-width: thin; scrollbar-color: #2c323d transparent; }
+::-webkit-scrollbar             { width: 8px; height: 8px; }
+::-webkit-scrollbar-track       { background: transparent; }
+::-webkit-scrollbar-thumb       { background: #2c323d; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4250; }
